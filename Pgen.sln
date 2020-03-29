@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pgen", "Pgen\Pgen.csproj", "{B31AF0FD-1A95-4451-9137-4F72778EF642}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pgen", "Pgen\Pgen.csproj", "{B31AF0FD-1A95-4451-9137-4F72778EF642}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pgen.Demo", "Pgen.Demo\Pgen.Demo.csproj", "{FC6FDCA5-85FB-4E04-837E-C528DFCB1A1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{B31AF0FD-1A95-4451-9137-4F72778EF642}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B31AF0FD-1A95-4451-9137-4F72778EF642}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B31AF0FD-1A95-4451-9137-4F72778EF642}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC6FDCA5-85FB-4E04-837E-C528DFCB1A1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC6FDCA5-85FB-4E04-837E-C528DFCB1A1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC6FDCA5-85FB-4E04-837E-C528DFCB1A1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC6FDCA5-85FB-4E04-837E-C528DFCB1A1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

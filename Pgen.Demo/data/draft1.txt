@@ -1,0 +1,11 @@
+﻿
+
+
+arithmeticAction: expression operator expression
+
+expression: number | arithmeticAction | openb expression closeb
+
+token openb: (
+token closeb: )
+token number: [0-9]+
+token operator: - | + | * | /

@@ -1,0 +1,9 @@
+﻿
+123 7398
+34.1 
+""
+"Hello World"
+"this is a \"cool\" string"
+
+true 
+false

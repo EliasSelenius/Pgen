@@ -4,11 +4,11 @@ using System.Text;
 
 namespace Pgen {
     public class Token {
-        public readonly LexRule Rule;
-        public readonly string Value;
+        public readonly Lexrule type;
+        public readonly string value;
 
-        internal Token(LexRule rule, string value) {
-            Rule = rule; Value = value;
+        internal Token(Lexrule rule, string value) {
+            type = rule; this.value = value;
         }
     }
 }
