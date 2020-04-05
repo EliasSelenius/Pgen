@@ -1,9 +1,20 @@
 ﻿
-123 7398
-34.1 
-""
-"Hello World"
-"this is a \"cool\" string"
-
-true 
-false
+[
+	{
+		number: 123,
+		list: [
+			true, false
+		],
+		ass: 5
+	},
+	{},[],
+	{
+		test: [
+			[1,2,3],
+			[4,5,6],
+			{
+				cool: true
+			}
+		]
+	}
+]

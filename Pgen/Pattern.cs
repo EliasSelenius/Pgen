@@ -11,7 +11,9 @@ namespace Pgen {
 
         public IRule[] rules;
 
-        public Pattern() { }
+        public Pattern(IRule[] rules) {
+            this.rules = rules;
+        }
 
         public bool Match(TokenReader tr) {
             int startIndex = tr.index;

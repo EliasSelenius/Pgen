@@ -7,14 +7,17 @@ using System.Text.RegularExpressions;
 namespace Pgen {
     public class Lexrule : IRule {
         public readonly string name;
-
+        public readonly bool skipable;
         private readonly Regex regex;
 
-        public Lexrule(string name, string regx, RegexOptions options) {
-            this.name = name; regex = new Regex($"^(?:{regx})", options); 
+        public Lexrule(string name, bool skip, string regx, RegexOptions options) {
+            this.name = name;
+            this.skipable = skip;
+            regex = new Regex($"^(?:{regx})", options); 
         }
 
-        public Lexrule(string name, string regx) : this(name, regx, RegexOptions.None) { }
+        public Lexrule(string name, bool skip, string regx) : this(name, skip, regx, RegexOptions.None) { }
+        public Lexrule(string name, string regx) : this(name, false, regx, RegexOptions.None) { }
 
         public Token Match(string source) {
             var m = regex.Match(source);

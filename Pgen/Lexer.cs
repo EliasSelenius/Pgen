@@ -28,7 +28,7 @@ namespace Pgen {
             while (source != string.Empty) {
                 var t = nextToken(source);
                 source = source.Remove(0, t.value.Length);
-                res.Add(t);
+                if (!t.type.skipable) res.Add(t);
             }
 
             return res;
