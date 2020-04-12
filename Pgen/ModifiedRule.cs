@@ -6,7 +6,10 @@ namespace Pgen {
     abstract class ModifiedRule : IRule {
         private IRule inner;
 
-        public virtual bool ParseMatch(TokenReader tr) => inner.ParseMatch(tr);
+        public virtual string name => "Modified_" + inner.name;
+        public bool createNode => inner.createNode;
+
+        public virtual bool ParseMatch(TokenReader tr, SyntaxTree.Node node) => inner.ParseMatch(tr, node);
 
         internal static IRule CreateModifiedRule(IRule inner, char type) {
             ModifiedRule rule = type switch {
@@ -22,28 +25,42 @@ namespace Pgen {
         }
 
         public class Optional : ModifiedRule {
-            public override bool ParseMatch(TokenReader tr) {
-                base.ParseMatch(tr); return true;
+            public override string name => "Optional(" + inner.name + ")";
+            public override bool ParseMatch(TokenReader tr, SyntaxTree.Node node) {
+                base.ParseMatch(tr, node);
+                return true;
             }
+
         }
 
         public class ZeroOrMore : ModifiedRule {
-            public override bool ParseMatch(TokenReader tr) {
-                var con = true;
+            public override string name => "ZeroOrMore(" + inner.name + ")";
+            public override bool ParseMatch(TokenReader tr, SyntaxTree.Node node) {
+                /*var con = true;
                 while (con) {
-                    con = base.ParseMatch(tr);
-                }
+                    con = base.ParseMatch(tr, node);
+                }*/
+
+                while (base.ParseMatch(tr, node)) { }
+
                 return true;
             }
         }
 
         public class OneOrMore : ModifiedRule {
-            public override bool ParseMatch(TokenReader tr) {
-                if (!base.ParseMatch(tr)) return false;
-                var con = true;
+            public override string name => "OneOrMore(" + inner.name + ")";
+
+            public override bool ParseMatch(TokenReader tr, SyntaxTree.Node node) {
+                
+                if (!base.ParseMatch(tr, node)) return false;
+                
+                /*var con = true;
                 while (con) {
-                    con = base.ParseMatch(tr);
-                }
+                    con = base.ParseMatch(tr, node);
+                }*/
+
+                while (base.ParseMatch(tr, node)) { }
+
                 return true;
             }
         }

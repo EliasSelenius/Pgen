@@ -5,7 +5,6 @@ using System.Text;
 namespace Pgen {
     public class TokenReader {
 
-
         private readonly List<Token> tokens;
         public int index = -1;
 

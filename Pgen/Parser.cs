@@ -11,10 +11,10 @@ namespace Pgen {
         private readonly List<Parserule> parserules = new List<Parserule>();
         
         public Parser() {
-            initialize();
+            initializeRules();
         }
 
-        private void initialize() {
+        private void initializeRules() {
             var thisType = this.GetType();
 
             var fields = thisType.GetFields(System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public).Where(x => x.IsDefined(typeof(RuleAttribute), false));
@@ -68,14 +68,16 @@ namespace Pgen {
             return ModifiedRule.CreateModifiedRule(GetRule(name.TrimEnd('?', '*', '+')), name.Last());
         }
 
-        public void Parse(string input) {
+        public SyntaxTree Parse(string input) {
             var reader = new TokenReader(lexer.Lex(input));
 
             var mainRule = parserules[0]; // hard-code to first rule for now
 
-            if (!mainRule.ParseMatch(reader))
+            var root = new SyntaxTree.Node(mainRule);
+            if (!mainRule.ParseMatch(reader, root))
                 throw new ParserException("");
 
+            return new SyntaxTree(root);
         }
 
     

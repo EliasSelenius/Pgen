@@ -1,13 +1,17 @@
 ﻿using System;
+using System.Collections;
 using System.IO;
 using Pgen;
 
 namespace Pgen.Demo {
+
     class Program {
         static void Main(string[] args) {
 
             var p = new testJsonParser();
-            p.Parse(File.ReadAllText("data/test1.txt"));
+            var s = p.Parse(File.ReadAllText("data/test1.txt"));
+            Console.WriteLine(s.AsText());
+
 
             Console.WriteLine("Hello World!");
         }
@@ -15,7 +19,22 @@ namespace Pgen.Demo {
 
     public class testJsonParser : Parser {
 
-        [Rule("\\s+"),Skip] Lexrule whitespace;
+        public testJsonParser() {
+            colon.createNode =
+            comma.createNode =
+            openSqbr.createNode =
+            closeSqbr.createNode =
+            openCurl.createNode =
+            closeCurl.createNode = 
+            list_item.createNode =
+            object_item.createNode = 
+            value.createNode = false;
+
+
+
+        }
+
+        [Rule("\\s+"), Skip] Lexrule whitespace;
         [Rule("\\d+")] Lexrule number;
         [Rule("true|false")] Lexrule boolean;
         [Rule("[a-zA-Z]+")] Lexrule name;

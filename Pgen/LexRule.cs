@@ -6,9 +6,14 @@ using System.Text.RegularExpressions;
 
 namespace Pgen {
     public class Lexrule : IRule {
-        public readonly string name;
+
+        public string name { get; }
+        public bool createNode { get; set; } = true;
+
+
         public readonly bool skipable;
         private readonly Regex regex;
+
 
         public Lexrule(string name, bool skip, string regx, RegexOptions options) {
             this.name = name;
@@ -24,9 +29,10 @@ namespace Pgen {
             return m.Success ? new Token(this, m.Value) : null;
         }
 
-        public bool ParseMatch(TokenReader tr) {
+        public bool ParseMatch(TokenReader tr, SyntaxTree.Node node) {
             if (tr.Peek().type == this) {
                 tr.Next();
+                if (createNode) node.AddChild(new SyntaxTree.Node(this));
                 return true;
             }
             return false;
