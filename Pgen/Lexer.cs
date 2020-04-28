@@ -15,6 +15,9 @@ namespace Pgen {
             rules = lexRules;
         }
 
+        public void AddRule(Lexrule rule) => rules.Add(rule);
+        public void InsertRule(int index, Lexrule rule) => rules.Insert(index, rule);
+
         public Lexrule GetRule(int i) => rules[i];
         public Lexrule GetRule(string name) => (from r in rules
                                                 where r.name == name

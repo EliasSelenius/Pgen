@@ -8,7 +8,7 @@ namespace Pgen {
 
         public string name { get; }
 
-        public bool createNode { get; set; } = true;
+        public bool createNode { get; set; }
 
         private readonly string pattern;
         private Pattern[] patterns;
@@ -30,7 +30,7 @@ namespace Pgen {
 
         public bool ParseMatch(TokenReader tr, SyntaxTree.Node node) {
 
-            var n = createNode ? new SyntaxTree.Node(this) : node;
+            var n = createNode ? new SyntaxTree.Node(this, "") : node;
 
             for (int i = 0; i < patterns.Length; i++) {
                 if (patterns[i].Match(tr, n)) {

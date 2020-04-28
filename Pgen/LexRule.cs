@@ -8,7 +8,7 @@ namespace Pgen {
     public class Lexrule : IRule {
 
         public string name { get; }
-        public bool createNode { get; set; } = true;
+        public bool createNode { get; set; }
 
 
         public readonly bool skipable;
@@ -30,9 +30,9 @@ namespace Pgen {
         }
 
         public bool ParseMatch(TokenReader tr, SyntaxTree.Node node) {
-            if (tr.Peek().type == this) {
+            if (tr.Peek()?.type == this) {
                 tr.Next();
-                if (createNode) node.AddChild(new SyntaxTree.Node(this));
+                if (createNode) node.AddChild(new SyntaxTree.Node(this, tr.Current.value));
                 return true;
             }
             return false;
