@@ -14,6 +14,10 @@ namespace Pgen {
             initializeRules();
         }
 
+        public Parser(string grammarCode) {
+            // TODO: implement...
+        }
+
         private void initializeRules() {
             var thisType = this.GetType();
 
@@ -55,7 +59,7 @@ namespace Pgen {
             IRule r = lexer.GetRule(name);
             if (r != null) return r;
             // search parse rules:
-            return parserules.Where(x => x.name.Equals(name)).FirstOrDefault();
+            return parserules.Where(x => x.name.Equals(name)).FirstOrDefault() ?? throw new Exception("'" + name + "' is not a defined rule");
         }
 
         private int inlineId = 0;
@@ -99,16 +103,12 @@ namespace Pgen {
     }
 
     [System.AttributeUsage(AttributeTargets.Field)]
-    public class RuleAttribute : Attribute {
+    public sealed class RuleAttribute : Attribute {
         public readonly string pattern;
         public readonly bool createNode;
-        public readonly Type node_type;
-        public RuleAttribute(string pattern, bool createNode = false) : this(pattern, createNode, typeof(SyntaxTree.Node)) { }
-
-        public RuleAttribute(string pattern, bool createNode, Type node_type) {
+        public RuleAttribute(string pattern, bool createNode = false) { 
             this.pattern = pattern;
             this.createNode = createNode;
-            this.node_type = node_type;
         }
     }
 
